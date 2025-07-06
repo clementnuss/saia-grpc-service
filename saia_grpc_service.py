@@ -17,7 +17,7 @@ from digimat.saia.memory import (
     SAIAItemRegister,
     SAIAItemTimer,
 )
-from gen.saia.v1 import saia_pb2, saia_pb2_grpc
+from gen.python.saia.v1 import saia_pb2, saia_pb2_grpc
 from dotenv import load_dotenv
 
 # Enable logging
