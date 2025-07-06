@@ -104,7 +104,7 @@ class SaiaPcdServicer(saia_pb2_grpc.SaiaPcdServiceServicer):
         if r is None or not r.isAlive():
             context.abort(grpc.StatusCode.INTERNAL, "unable to write flag value")
 
-        r.bool = request.value
+        r.setValue(request.value)
         return saia_pb2.WriteFlagResponse()
 
     def WriteRegister(
