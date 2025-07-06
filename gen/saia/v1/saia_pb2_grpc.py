@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import saia_pb2 as saia__pb2
+from saia.v1 import saia_pb2 as saia_dot_v1_dot_saia__pb2
 
 
 class SaiaPcdServiceStub(object):
@@ -17,43 +17,43 @@ class SaiaPcdServiceStub(object):
         """
         self.ReadInput = channel.unary_unary(
                 '/saia.v1.SaiaPcdService/ReadInput',
-                request_serializer=saia__pb2.ReadInputRequest.SerializeToString,
-                response_deserializer=saia__pb2.ReadInputResponse.FromString,
+                request_serializer=saia_dot_v1_dot_saia__pb2.ReadInputRequest.SerializeToString,
+                response_deserializer=saia_dot_v1_dot_saia__pb2.ReadInputResponse.FromString,
                 _registered_method=True)
         self.ReadOutput = channel.unary_unary(
                 '/saia.v1.SaiaPcdService/ReadOutput',
-                request_serializer=saia__pb2.ReadOutputRequest.SerializeToString,
-                response_deserializer=saia__pb2.ReadOutputResponse.FromString,
+                request_serializer=saia_dot_v1_dot_saia__pb2.ReadOutputRequest.SerializeToString,
+                response_deserializer=saia_dot_v1_dot_saia__pb2.ReadOutputResponse.FromString,
                 _registered_method=True)
         self.ReadFlag = channel.unary_unary(
                 '/saia.v1.SaiaPcdService/ReadFlag',
-                request_serializer=saia__pb2.ReadFlagRequest.SerializeToString,
-                response_deserializer=saia__pb2.ReadFlagResponse.FromString,
+                request_serializer=saia_dot_v1_dot_saia__pb2.ReadFlagRequest.SerializeToString,
+                response_deserializer=saia_dot_v1_dot_saia__pb2.ReadFlagResponse.FromString,
                 _registered_method=True)
         self.ReadCounter = channel.unary_unary(
                 '/saia.v1.SaiaPcdService/ReadCounter',
-                request_serializer=saia__pb2.ReadCounterRequest.SerializeToString,
-                response_deserializer=saia__pb2.ReadCounterResponse.FromString,
+                request_serializer=saia_dot_v1_dot_saia__pb2.ReadCounterRequest.SerializeToString,
+                response_deserializer=saia_dot_v1_dot_saia__pb2.ReadCounterResponse.FromString,
                 _registered_method=True)
         self.ReadTimer = channel.unary_unary(
                 '/saia.v1.SaiaPcdService/ReadTimer',
-                request_serializer=saia__pb2.ReadTimerRequest.SerializeToString,
-                response_deserializer=saia__pb2.ReadTimerResponse.FromString,
+                request_serializer=saia_dot_v1_dot_saia__pb2.ReadTimerRequest.SerializeToString,
+                response_deserializer=saia_dot_v1_dot_saia__pb2.ReadTimerResponse.FromString,
                 _registered_method=True)
         self.ReadRegister = channel.unary_unary(
                 '/saia.v1.SaiaPcdService/ReadRegister',
-                request_serializer=saia__pb2.ReadRegisterRequest.SerializeToString,
-                response_deserializer=saia__pb2.ReadRegisterResponse.FromString,
+                request_serializer=saia_dot_v1_dot_saia__pb2.ReadRegisterRequest.SerializeToString,
+                response_deserializer=saia_dot_v1_dot_saia__pb2.ReadRegisterResponse.FromString,
                 _registered_method=True)
         self.WriteFlag = channel.unary_unary(
                 '/saia.v1.SaiaPcdService/WriteFlag',
-                request_serializer=saia__pb2.WriteFlagRequest.SerializeToString,
-                response_deserializer=saia__pb2.WriteFlagResponse.FromString,
+                request_serializer=saia_dot_v1_dot_saia__pb2.WriteFlagRequest.SerializeToString,
+                response_deserializer=saia_dot_v1_dot_saia__pb2.WriteFlagResponse.FromString,
                 _registered_method=True)
         self.WriteRegister = channel.unary_unary(
                 '/saia.v1.SaiaPcdService/WriteRegister',
-                request_serializer=saia__pb2.WriteRegisterRequest.SerializeToString,
-                response_deserializer=saia__pb2.WriteRegisterResponse.FromString,
+                request_serializer=saia_dot_v1_dot_saia__pb2.WriteRegisterRequest.SerializeToString,
+                response_deserializer=saia_dot_v1_dot_saia__pb2.WriteRegisterResponse.FromString,
                 _registered_method=True)
 
 
@@ -116,43 +116,43 @@ def add_SaiaPcdServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'ReadInput': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadInput,
-                    request_deserializer=saia__pb2.ReadInputRequest.FromString,
-                    response_serializer=saia__pb2.ReadInputResponse.SerializeToString,
+                    request_deserializer=saia_dot_v1_dot_saia__pb2.ReadInputRequest.FromString,
+                    response_serializer=saia_dot_v1_dot_saia__pb2.ReadInputResponse.SerializeToString,
             ),
             'ReadOutput': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadOutput,
-                    request_deserializer=saia__pb2.ReadOutputRequest.FromString,
-                    response_serializer=saia__pb2.ReadOutputResponse.SerializeToString,
+                    request_deserializer=saia_dot_v1_dot_saia__pb2.ReadOutputRequest.FromString,
+                    response_serializer=saia_dot_v1_dot_saia__pb2.ReadOutputResponse.SerializeToString,
             ),
             'ReadFlag': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadFlag,
-                    request_deserializer=saia__pb2.ReadFlagRequest.FromString,
-                    response_serializer=saia__pb2.ReadFlagResponse.SerializeToString,
+                    request_deserializer=saia_dot_v1_dot_saia__pb2.ReadFlagRequest.FromString,
+                    response_serializer=saia_dot_v1_dot_saia__pb2.ReadFlagResponse.SerializeToString,
             ),
             'ReadCounter': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadCounter,
-                    request_deserializer=saia__pb2.ReadCounterRequest.FromString,
-                    response_serializer=saia__pb2.ReadCounterResponse.SerializeToString,
+                    request_deserializer=saia_dot_v1_dot_saia__pb2.ReadCounterRequest.FromString,
+                    response_serializer=saia_dot_v1_dot_saia__pb2.ReadCounterResponse.SerializeToString,
             ),
             'ReadTimer': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadTimer,
-                    request_deserializer=saia__pb2.ReadTimerRequest.FromString,
-                    response_serializer=saia__pb2.ReadTimerResponse.SerializeToString,
+                    request_deserializer=saia_dot_v1_dot_saia__pb2.ReadTimerRequest.FromString,
+                    response_serializer=saia_dot_v1_dot_saia__pb2.ReadTimerResponse.SerializeToString,
             ),
             'ReadRegister': grpc.unary_unary_rpc_method_handler(
                     servicer.ReadRegister,
-                    request_deserializer=saia__pb2.ReadRegisterRequest.FromString,
-                    response_serializer=saia__pb2.ReadRegisterResponse.SerializeToString,
+                    request_deserializer=saia_dot_v1_dot_saia__pb2.ReadRegisterRequest.FromString,
+                    response_serializer=saia_dot_v1_dot_saia__pb2.ReadRegisterResponse.SerializeToString,
             ),
             'WriteFlag': grpc.unary_unary_rpc_method_handler(
                     servicer.WriteFlag,
-                    request_deserializer=saia__pb2.WriteFlagRequest.FromString,
-                    response_serializer=saia__pb2.WriteFlagResponse.SerializeToString,
+                    request_deserializer=saia_dot_v1_dot_saia__pb2.WriteFlagRequest.FromString,
+                    response_serializer=saia_dot_v1_dot_saia__pb2.WriteFlagResponse.SerializeToString,
             ),
             'WriteRegister': grpc.unary_unary_rpc_method_handler(
                     servicer.WriteRegister,
-                    request_deserializer=saia__pb2.WriteRegisterRequest.FromString,
-                    response_serializer=saia__pb2.WriteRegisterResponse.SerializeToString,
+                    request_deserializer=saia_dot_v1_dot_saia__pb2.WriteRegisterRequest.FromString,
+                    response_serializer=saia_dot_v1_dot_saia__pb2.WriteRegisterResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -181,8 +181,8 @@ class SaiaPcdService(object):
             request,
             target,
             '/saia.v1.SaiaPcdService/ReadInput',
-            saia__pb2.ReadInputRequest.SerializeToString,
-            saia__pb2.ReadInputResponse.FromString,
+            saia_dot_v1_dot_saia__pb2.ReadInputRequest.SerializeToString,
+            saia_dot_v1_dot_saia__pb2.ReadInputResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -208,8 +208,8 @@ class SaiaPcdService(object):
             request,
             target,
             '/saia.v1.SaiaPcdService/ReadOutput',
-            saia__pb2.ReadOutputRequest.SerializeToString,
-            saia__pb2.ReadOutputResponse.FromString,
+            saia_dot_v1_dot_saia__pb2.ReadOutputRequest.SerializeToString,
+            saia_dot_v1_dot_saia__pb2.ReadOutputResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -235,8 +235,8 @@ class SaiaPcdService(object):
             request,
             target,
             '/saia.v1.SaiaPcdService/ReadFlag',
-            saia__pb2.ReadFlagRequest.SerializeToString,
-            saia__pb2.ReadFlagResponse.FromString,
+            saia_dot_v1_dot_saia__pb2.ReadFlagRequest.SerializeToString,
+            saia_dot_v1_dot_saia__pb2.ReadFlagResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -262,8 +262,8 @@ class SaiaPcdService(object):
             request,
             target,
             '/saia.v1.SaiaPcdService/ReadCounter',
-            saia__pb2.ReadCounterRequest.SerializeToString,
-            saia__pb2.ReadCounterResponse.FromString,
+            saia_dot_v1_dot_saia__pb2.ReadCounterRequest.SerializeToString,
+            saia_dot_v1_dot_saia__pb2.ReadCounterResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -289,8 +289,8 @@ class SaiaPcdService(object):
             request,
             target,
             '/saia.v1.SaiaPcdService/ReadTimer',
-            saia__pb2.ReadTimerRequest.SerializeToString,
-            saia__pb2.ReadTimerResponse.FromString,
+            saia_dot_v1_dot_saia__pb2.ReadTimerRequest.SerializeToString,
+            saia_dot_v1_dot_saia__pb2.ReadTimerResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -316,8 +316,8 @@ class SaiaPcdService(object):
             request,
             target,
             '/saia.v1.SaiaPcdService/ReadRegister',
-            saia__pb2.ReadRegisterRequest.SerializeToString,
-            saia__pb2.ReadRegisterResponse.FromString,
+            saia_dot_v1_dot_saia__pb2.ReadRegisterRequest.SerializeToString,
+            saia_dot_v1_dot_saia__pb2.ReadRegisterResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -343,8 +343,8 @@ class SaiaPcdService(object):
             request,
             target,
             '/saia.v1.SaiaPcdService/WriteFlag',
-            saia__pb2.WriteFlagRequest.SerializeToString,
-            saia__pb2.WriteFlagResponse.FromString,
+            saia_dot_v1_dot_saia__pb2.WriteFlagRequest.SerializeToString,
+            saia_dot_v1_dot_saia__pb2.WriteFlagResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -370,8 +370,8 @@ class SaiaPcdService(object):
             request,
             target,
             '/saia.v1.SaiaPcdService/WriteRegister',
-            saia__pb2.WriteRegisterRequest.SerializeToString,
-            saia__pb2.WriteRegisterResponse.FromString,
+            saia_dot_v1_dot_saia__pb2.WriteRegisterRequest.SerializeToString,
+            saia_dot_v1_dot_saia__pb2.WriteRegisterResponse.FromString,
             options,
             channel_credentials,
             insecure,
