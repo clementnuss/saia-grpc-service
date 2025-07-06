@@ -40,7 +40,10 @@ message ReadTimerRequest {
 
 message ReadRegisterRequest {
   uint32 address = 1;
-  RegisterDataType data_type = 2;  // Whether to read as int or float
+  oneof data_type {
+    bool as_int = 2;     // Set to true to read as integer
+    bool as_float = 3;   // Set to true to read as float
+  }
 }
 
 // Read response messages
@@ -83,10 +86,9 @@ message WriteFlagResponse {
 
 message WriteRegisterRequest {
   uint32 address = 1;
-  RegisterDataType data_type = 2;
   oneof value {
-    int32 int_value = 3;
-    float float_value = 4;
+    int32 int_value = 2;
+    float float_value = 3;
   }
 }
 
@@ -94,10 +96,4 @@ message WriteRegisterResponse {
   // Empty - success indicated by no gRPC error
 }
 
-// Register data types
-enum RegisterDataType {
-  REGISTER_DATA_TYPE_UNSPECIFIED = 0;
-  REGISTER_DATA_TYPE_INT = 1;
-  REGISTER_DATA_TYPE_FLOAT = 2;
-}
 

@@ -37,12 +37,12 @@ class SaiaPcdServicer(saia_pb2_grpc.SaiaPcdServiceServicer):
             context.abort(grpc.StatusCode.INTERNAL, "unable to read register value")
 
         resp = saia_pb2.ReadRegisterResponse()
-        if request.data_type == saia_pb2.REGISTER_DATA_TYPE_INT:
+        if request.HasField("as_int"):
             resp.int_value = r.value
-        elif request.data_type == saia_pb2.REGISTER_DATA_TYPE_FLOAT:
+        elif request.HasField("as_float"):
             resp.float_value = r.float
         else:
-            context.abort(grpc.StatusCode.INVALID_ARGUMENT, "missing data_type")
+            context.abort(grpc.StatusCode.INVALID_ARGUMENT, "must specify either as_int or as_float")
 
         return resp
 
@@ -115,16 +115,12 @@ class SaiaPcdServicer(saia_pb2_grpc.SaiaPcdServiceServicer):
         if r is None or not r.isAlive():
             context.abort(grpc.StatusCode.INTERNAL, "unable to write register value")
 
-        if request.data_type == saia_pb2.REGISTER_DATA_TYPE_INT:
-            if not request.HasField("int_value"):
-                context.abort(grpc.StatusCode.INVALID_ARGUMENT, "int_value required for INT data type")
+        if request.HasField("int_value"):
             r.value = request.int_value
-        elif request.data_type == saia_pb2.REGISTER_DATA_TYPE_FLOAT:
-            if not request.HasField("float_value"):
-                context.abort(grpc.StatusCode.INVALID_ARGUMENT, "float_value required for FLOAT data type")
+        elif request.HasField("float_value"):
             r.float = request.float_value
         else:
-            context.abort(grpc.StatusCode.INVALID_ARGUMENT, "missing or invalid data_type")
+            context.abort(grpc.StatusCode.INVALID_ARGUMENT, "must specify either int_value or float_value")
 
         return saia_pb2.WriteRegisterResponse()
 
