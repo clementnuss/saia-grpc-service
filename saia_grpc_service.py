@@ -10,10 +10,12 @@ from concurrent import futures
 import grpc
 from digimat.saia import SAIANode, SAIAServer
 from digimat.saia.memory import (
+    SAIAItemCounter,
     SAIAItemFlag,
     SAIAItemInput,
     SAIAItemOutput,
     SAIAItemRegister,
+    SAIAItemTimer,
 )
 from gen import saia_pb2, saia_pb2_grpc
 from dotenv import load_dotenv
@@ -74,6 +76,58 @@ class SaiaPcdServicer(saia_pb2_grpc.SaiaPcdServiceServicer):
 
         return saia_pb2.ReadOutputResponse(value=r.bool)
 
+    def ReadCounter(
+        self, request: saia_pb2.ReadCounterRequest, context: grpc.ServicerContext
+    ) -> saia_pb2.ReadCounterResponse:
+        r = typing.cast(SAIAItemCounter, server.counters[request.address])
+
+        if r is None or not r.isAlive():
+            context.abort(grpc.StatusCode.INTERNAL, "unable to read counter value")
+
+        return saia_pb2.ReadCounterResponse(value=r.value)
+
+    def ReadTimer(
+        self, request: saia_pb2.ReadTimerRequest, context: grpc.ServicerContext
+    ) -> saia_pb2.ReadTimerResponse:
+        r = typing.cast(SAIAItemTimer, server.timers[request.address])
+
+        if r is None or not r.isAlive():
+            context.abort(grpc.StatusCode.INTERNAL, "unable to read timer value")
+
+        return saia_pb2.ReadTimerResponse(value=r.value)
+
+    def WriteFlag(
+        self, request: saia_pb2.WriteFlagRequest, context: grpc.ServicerContext
+    ) -> saia_pb2.WriteFlagResponse:
+        r = typing.cast(SAIAItemFlag, server.flags[request.address])
+
+        if r is None or not r.isAlive():
+            context.abort(grpc.StatusCode.INTERNAL, "unable to write flag value")
+
+        r.bool = request.value
+        return saia_pb2.WriteFlagResponse()
+
+    def WriteRegister(
+        self, request: saia_pb2.WriteRegisterRequest, context: grpc.ServicerContext
+    ) -> saia_pb2.WriteRegisterResponse:
+        r = typing.cast(SAIAItemRegister, server.registers[request.address])
+
+        if r is None or not r.isAlive():
+            context.abort(grpc.StatusCode.INTERNAL, "unable to write register value")
+
+        if request.data_type == saia_pb2.REGISTER_DATA_TYPE_INT:
+            if not request.HasField("int_value"):
+                context.abort(grpc.StatusCode.INVALID_ARGUMENT, "int_value required for INT data type")
+            r.value = request.int_value
+        elif request.data_type == saia_pb2.REGISTER_DATA_TYPE_FLOAT:
+            if not request.HasField("float_value"):
+                context.abort(grpc.StatusCode.INVALID_ARGUMENT, "float_value required for FLOAT data type")
+            r.float = request.float_value
+        else:
+            context.abort(grpc.StatusCode.INVALID_ARGUMENT, "missing or invalid data_type")
+
+        return saia_pb2.WriteRegisterResponse()
+
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
@@ -100,5 +154,7 @@ if __name__ == "__main__":
     server.memory.inputs.setRefreshDelay(15)
     server.memory.outputs.setRefreshDelay(15)
     server.memory.flags.setRefreshDelay(15)
+    server.memory.counters.setRefreshDelay(15)
+    server.memory.timers.setRefreshDelay(15)
 
     serve()
