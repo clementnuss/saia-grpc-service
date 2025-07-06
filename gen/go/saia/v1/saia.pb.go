@@ -905,8 +905,8 @@ const file_saia_v1_saia_proto_rawDesc = "" +
 	"\tReadTimer\x12\x19.saia.v1.ReadTimerRequest\x1a\x1a.saia.v1.ReadTimerResponse\x12K\n" +
 	"\fReadRegister\x12\x1c.saia.v1.ReadRegisterRequest\x1a\x1d.saia.v1.ReadRegisterResponse\x12B\n" +
 	"\tWriteFlag\x12\x19.saia.v1.WriteFlagRequest\x1a\x1a.saia.v1.WriteFlagResponse\x12N\n" +
-	"\rWriteRegister\x12\x1d.saia.v1.WriteRegisterRequest\x1a\x1e.saia.v1.WriteRegisterResponseB\x92\x01\n" +
-	"\vcom.saia.v1B\tSaiaProtoP\x01Z;github.com/clementnuss/saia-pcd-exporter/gen/saia/v1;saiav1\xa2\x02\x03SXX\xaa\x02\aSaia.V1\xca\x02\aSaia\\V1\xe2\x02\x13Saia\\V1\\GPBMetadata\xea\x02\bSaia::V1b\x06proto3"
+	"\rWriteRegister\x12\x1d.saia.v1.WriteRegisterRequest\x1a\x1e.saia.v1.WriteRegisterResponseB\x95\x01\n" +
+	"\vcom.saia.v1B\tSaiaProtoP\x01Z>github.com/clementnuss/saia-grpc-service/gen/go/saia/v1;saiav1\xa2\x02\x03SXX\xaa\x02\aSaia.V1\xca\x02\aSaia\\V1\xe2\x02\x13Saia\\V1\\GPBMetadata\xea\x02\bSaia::V1b\x06proto3"
 
 var (
 	file_saia_v1_saia_proto_rawDescOnce sync.Once

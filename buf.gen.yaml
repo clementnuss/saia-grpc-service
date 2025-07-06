@@ -3,7 +3,7 @@ managed:
   enabled: true
   override:
     - file_option: go_package_prefix
-      value: github.com/clementnuss/saia-pcd-exporter/gen
+      value: github.com/clementnuss/saia-grpc-service/gen/go
 plugins:
 - remote: buf.build/protocolbuffers/pyi:v31.1
   out: gen/python

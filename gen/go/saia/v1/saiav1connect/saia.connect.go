@@ -8,7 +8,7 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	v1 "github.com/clementnuss/saia-pcd-exporter/gen/saia/v1"
+	v1 "github.com/clementnuss/saia-grpc-service/gen/go/saia/v1"
 	http "net/http"
 	strings "strings"
 )
