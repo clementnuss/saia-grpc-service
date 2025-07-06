@@ -1,0 +1,6 @@
+digimat.saia
+python-dotenv
+netifaces
+
+protobuf~=6.31.1
+grpcio

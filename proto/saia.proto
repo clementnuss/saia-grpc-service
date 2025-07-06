@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package saia.v1;
+
+// Service definition for SAIA PCD controller access
+service SaiaPcdService {
+  // Read operations
+  rpc ReadInput(ReadInputRequest) returns (ReadInputResponse);
+  rpc ReadOutput(ReadOutputRequest) returns (ReadOutputResponse);
+  rpc ReadFlag(ReadFlagRequest) returns (ReadFlagResponse);
+  rpc ReadCounter(ReadCounterRequest) returns (ReadCounterResponse);
+  rpc ReadTimer(ReadTimerRequest) returns (ReadTimerResponse);
+  rpc ReadRegister(ReadRegisterRequest) returns (ReadRegisterResponse);
+
+  // Write operations
+  rpc WriteFlag(WriteFlagRequest) returns (WriteFlagResponse);
+  rpc WriteRegister(WriteRegisterRequest) returns (WriteRegisterResponse);
+}
+
+// Read request messages
+message ReadInputRequest {
+  uint32 address = 1;
+}
+
+message ReadOutputRequest {
+  uint32 address = 1;
+}
+
+message ReadFlagRequest {
+  uint32 address = 1;
+}
+
+message ReadCounterRequest {
+  uint32 address = 1;
+}
+
+message ReadTimerRequest {
+  uint32 address = 1;
+}
+
+message ReadRegisterRequest {
+  uint32 address = 1;
+  RegisterDataType data_type = 2;  // Whether to read as int or float
+}
+
+// Read response messages
+message ReadInputResponse {
+  bool value = 1;
+}
+
+message ReadOutputResponse {
+  bool value = 1;
+}
+
+message ReadFlagResponse {
+  bool value = 1;
+}
+
+message ReadCounterResponse {
+  int32 value = 1;
+}
+
+message ReadTimerResponse {
+  int32 value = 1;
+}
+
+message ReadRegisterResponse {
+  oneof value {
+    int32 int_value = 1;
+    float float_value = 2;
+  }
+}
+
+// Write operations
+message WriteFlagRequest {
+  uint32 address = 1;
+  bool value = 2;
+}
+
+message WriteFlagResponse {
+  // Empty - success indicated by no gRPC error
+}
+
+message WriteRegisterRequest {
+  uint32 address = 1;
+  RegisterDataType data_type = 2;
+  oneof value {
+    int32 int_value = 3;
+    float float_value = 4;
+  }
+}
+
+message WriteRegisterResponse {
+  // Empty - success indicated by no gRPC error
+}
+
+// Register data types
+enum RegisterDataType {
+  REGISTER_DATA_TYPE_UNSPECIFIED = 0;
+  REGISTER_DATA_TYPE_INT = 1;
+  REGISTER_DATA_TYPE_FLOAT = 2;
+}
+
