@@ -1,4 +1,9 @@
 version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/clementnuss/saia-pcd-exporter/gen
 plugins:
 - remote: buf.build/protocolbuffers/pyi:v31.1
   out: gen/python
@@ -6,3 +11,9 @@ plugins:
   out: gen/python
 - remote: buf.build/grpc/python:v1.73.1
   out: gen/python
+- remote: buf.build/protocolbuffers/go
+  out: gen/go
+  opt: paths=source_relative
+- remote: buf.build/connectrpc/go
+  out: gen/go
+  opt: paths=source_relative
